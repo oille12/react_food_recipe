@@ -1,0 +1,24 @@
+div, input, textarea {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}
+
+.base-container {
+  background: white;
+  color: lightgray;
+  font-size: 1.125rem;
+  padding: 24px;
+  min-height: 100vh;
+}
