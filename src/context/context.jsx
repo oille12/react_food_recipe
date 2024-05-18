@@ -10,7 +10,7 @@ export default function GlobalState({children}) {
     // 음식리스트 state
     let [foodList, setFoodList]= useState([]);
     // 음식 상세데이터 state
-    let [foodDetailDate, setFoodDetailDate] = useState(null);
+    let [foodDetailData, setFoodDetailData] = useState(null);
     // 즐겨찾기 등록 리스트 state
     let [favoritesList, setFavoritesList] = useState([]);
 
@@ -35,12 +35,31 @@ export default function GlobalState({children}) {
         } catch (e) {
             console.log(e)
         }
+    }
 
+    // favoritesList 즐겨찾기 등록 리스트 state의 배열을 수정(추가/삭제)
+    // state의 배열은 직접 수정X -> ...으로 분리하고 []로 감싸서 카피본으로 수정 [...]
+
+    // 변수를 안쓰고 useState를 하용하는 이유는 데이터값이 바뀌면 화면도 같이 갱신해주려고.
+    function hAddToFavorite(getCurItem) {
+        let copyFavoritesList = [...favoritesList]; // 배열 형태로 분해했다가 다시 배열로 만들어서 대입(카피본)
+
+        // getCurItem의 id와 favoritesList의 id들을 비교 -> 동일한게 있는지 확인 검사
+        const index = copyFavoritesList.findIndex(e=>e.id === getCurItem.id); // 못찾으면 -1, 찾으면 해당위치 return
+
+        if(index === -1) {
+            copyFavoritesList.push(getCurItem); // 즐겨찾기 리스트에 없으면 추가
+        } else {
+            copyFavoritesList.splice(index); // 있었으면 제거
+        }
+
+        // 새로만든 배열을 state에 덮어씀 (한개 값만 수정하면 화면이 안바뀌므로 배열째로 덮어씀)
+        setFavoritesList(copyFavoritesList);
     }
 
     return(
         <GlobalContext.Provider value={
-            {searchParam, setSearchParam, hSubmit, foodList, setFoodList, foodDetailDate, favoritesList}}>
+            {searchParam, setSearchParam, hSubmit, foodList, setFoodList, foodDetailData, setFoodDetailData, favoritesList, hAddToFavorite}}>
             {children}
         </GlobalContext.Provider>
     )

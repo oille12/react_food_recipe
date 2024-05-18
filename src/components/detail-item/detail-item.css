@@ -26,13 +26,26 @@
 }
 
 .text-publisher {
-
+    color: darkgreen;
+    font-weight: 600;
 }
 
 .text-title {
-
+    color: black;
+    font-size: 1.5rem;
+    white-space: nowrap; /* 한줄 처리 */
+    text-overflow: ellipsis; /* 넘치면 ...처리 */
+    overflow: hidden;
+    margin: 16px 0 24px 0; /* 위에서부터 시계방향 마진값 */
 }
 
 .link-detail {
-
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 0.7rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0,0,0,0.6);
 }

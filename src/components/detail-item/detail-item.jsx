@@ -13,7 +13,7 @@ export default function DetailItem({item}) {
             <div>
                 <span className='text-publisher'>{item?.publisher}</span>
                 <h3 className='text-title'>{item?.title}</h3>
-                <Link to={`/detail/&{item?.id}`} className='link-detail'>상세보기</Link>
+                <Link to={`/detail/${item?.id}`} className='link-detail'>상세보기</Link>
             </div>
         </div>
     )
